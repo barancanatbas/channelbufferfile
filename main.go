@@ -17,8 +17,6 @@ func WriteFile(item chan []byte, doneChannel chan bool, errChannel chan error) {
 		select {
 		case <-doneChannel:
 			return
-		case err := <-errChannel:
-			errChannel <- err
 		case data := <-item:
 			_, err := file.Write(data)
 			if err != nil {
